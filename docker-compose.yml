@@ -1,0 +1,17 @@
+services:
+  meu-backend:
+    image: joaovitortst/resilient-payment-router:latest
+    networks:
+      - backend
+      - payment-processor
+    environment:
+      - PAYMENT_PROCESSOR_URL_DEFAULT=http://payment-processor-default:8080
+      - PAYMENT_PROCESSOR_URL_FALLBACK=http://payment-processor-fallback:8080
+    ports:
+      - 9999:9999
+
+networks:
+  backend:
+    driver: bridge
+  payment-processor:
+    external: true
