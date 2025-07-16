@@ -10,16 +10,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/payments")
 public class PaymentController {
     @Autowired
     PaymentService paymentService;
 
-    @PostMapping("/payment")
+    @PostMapping
     public ResponseEntity<String> payment(@RequestBody PaymentClientDTO paymentClient){
-        // do something
-        System.out.println("Payment completed successfully!");
-        return ResponseEntity.ok("Payment completed successfully!");
+        return ResponseEntity.ok(paymentService.routePayment(paymentClient));
     }
-
 }
